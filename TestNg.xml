@@ -13,6 +13,7 @@
             <class name="com.nespresso.selenium.testing.testclasses.LoginPageTest" />
             <class name="com.nespresso.selenium.testing.testclasses.ValidationPanierTest" />
             <class name="com.nespresso.selenium.testing.testclasses.NosCafesTest" />
+
         </classes>
     </test>
 </suite>
