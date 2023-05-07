@@ -32,11 +32,18 @@ public class BaseClass {
 
     public static Logger logger;
 
+    private static final String CHROME_DRIVER_PATH = System.getProperty("user.dir").concat("/drivers/linux/chromedriver");
+
     @BeforeClass
     @Parameters(value = "browser")
     public void setup(String browser) {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\NNDiaMa\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+        ChromeOptions options = getChromeOptions();
+        options.setBinary(CHROME_DRIVER_PATH);
+        options.addArguments("--headless");
+
+        // WebDriverManager.chromedriver().setup();
         if (browser.equals(Browser.CHROME.getLabel())) {
             driver = new ChromeDriver();
         } else if (browser.equals(Browser.FIREFOX.getLabel())) {
@@ -44,9 +51,8 @@ public class BaseClass {
         } else if (browser.equals(Browser.SAFARI.getLabel())) {
             driver = new SafariDriver();
         } else {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         }
-        ChromeOptions options = getChromeOptions();
         DesiredCapabilities capabilities = getDesiredCapabilities(options);
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
@@ -71,8 +77,10 @@ public class BaseClass {
     public ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.setBinary(CHROME_DRIVER_PATH);
         options.addArguments("--headless");
         options.addArguments("--incognito");
+        options.addArguments("disable-gpu");
         options.addArguments("start-maximized");
         options.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
         return options;
@@ -97,5 +105,17 @@ public class BaseClass {
 
     public void waitForNSeconds(int seconds) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
