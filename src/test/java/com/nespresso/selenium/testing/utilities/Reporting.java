@@ -34,7 +34,7 @@ public class Reporting extends TestListenerAdapter {
         extentReports.attachReporter(htmlReporter);
         extentReports.setSystemInfo("Host name", "localhost");
         extentReports.setSystemInfo("Environnement", "QA");
-        extentReports.setSystemInfo("User", "Douada NDOYE");
+        extentReports.setSystemInfo("User", "DIA MAMADOU");
 
         htmlReporter.config().setDocumentTitle("Nespresso Testing Projects");
         htmlReporter.config().setReportName("Nespresso Functional Test Reporting");

@@ -5,25 +5,25 @@ pipeline {
         stage('Clean') {
             steps {
                 echo 'Building..'
-                sh "mvn clean -Dbrowser=chrome"
+                sh "mvn clean -Dbrowser=chrome -Dselenide.browserBinary=/opt/chrome-linux/chrome"
             }
         }
         stage('Build') {
             steps {
                 echo 'Versioning..'
-                sh "mvn clean -X -Dbrowser=chrome"
+                sh "mvn clean -X -Dbrowser=chrome -Dselenide.browserBinary=/opt/chrome-linux/chrome"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "mvn clean install test -Dbrowser=chrome"
+                sh "mvn clean install test -Dbrowser=chrome -Dselenide.browserBinary=/opt/chrome-linux/chrome"
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "mvn clean package -Dbrowser=chrome"
+                sh "mvn clean package -Dbrowser=chrome -Dselenide.browserBinary=/opt/chrome-linux/chrome"
             }
         }
     }
