@@ -35,7 +35,8 @@ public class BaseClass {
     @BeforeClass
     @Parameters(value = "browser")
     public void setup(String browser) {
-        WebDriverManager.chromedriver().setup();
+
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\NNDiaMa\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
         if (browser.equals(Browser.CHROME.getLabel())) {
             driver = new ChromeDriver();
         } else if (browser.equals(Browser.FIREFOX.getLabel())) {

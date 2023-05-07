@@ -12,23 +12,23 @@ public class LoginPage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "/html/body/div[2]/header/div/div[1]/div/div/div/div/div/div[1]/button")
+    @FindBy(className = "heading")
     @CacheLookup
     WebElement authenticationButton;
 
-    @FindBy(xpath = "/html/body/div[2]/header/div/div[1]/div/div/div/div/div/div[1]/div/div/div/form/div[1]/div/input")
+    @FindBy(id = "emailField")
     @CacheLookup
     WebElement usernameText;
 
-    @FindBy(xpath = "/html/body/div[2]/header/div/div[1]/div/div/div/div/div/div[1]/div/div/div/form/div[2]/div/input")
+    @FindBy(id = "passwordField")
     @CacheLookup
     WebElement passwordText;
 
-    @FindBy(xpath = "/html/body/div[2]/header/div/div[1]/div/div/div/div/div/div[1]/div/div/div/form/div[3]/div/label/input")
+    @FindBy(id = "ta-header-remember-me")
     @CacheLookup
     WebElement rememberMeCheckBox;
 
-    @FindBy(xpath = "/html/body/div[2]/header/div/div[1]/div/div/div/div/div/div[1]/div/div/div/form/button")
+    @FindBy(id = "ta-login-page-login-submit")
     @CacheLookup
     WebElement loginSubmitButton;
 
@@ -51,11 +51,6 @@ public class LoginPage {
 
     public void clickLoginButton() {
         this.authenticationButton.click();
-    }
-
-    public void fillUserInfos(String username, String password) {
-        this.setUsername(username);
-        this.setPassword(password);
     }
 
     public void clickRememberMeCheckBox() {

@@ -6,7 +6,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
 import java.util.List;
 
 public class HomePage {
@@ -17,13 +16,21 @@ public class HomePage {
     @CacheLookup
     WebElement bannerAcceptButton;
 
-    @FindBy(linkText = "Machines")
+    @FindBy(className = "AddToBagButton")
     @CacheLookup
-    WebElement machinesLinkText;
+    WebElement addToBagElement;
+
+    @FindBy(id = "ta-quantity-selector__predefined-7")
+    @CacheLookup
+    WebElement quantityAddToBag;
 
     @FindBy(className = "CheckoutActionButton")
     @CacheLookup
     List<WebElement> acheterButtonTexts;
+
+    @FindBy(id = "ta-mini-basket__open")
+    @CacheLookup
+    WebElement miniBasketOpen;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -34,11 +41,19 @@ public class HomePage {
         this.bannerAcceptButton.click();
     }
 
-    public void clickNespressoProfessionnelLink() {
-        this.machinesLinkText.click();
+    public void addToBagButton() {
+        this.addToBagElement.click();
     }
 
     public void clickFirstAcheterButtonTexts() {
         System.out.println("#######   " + acheterButtonTexts.size());
+    }
+
+    public void clickAddToBagQuantity(){
+        this.quantityAddToBag.click();
+    }
+
+    public void openMiniBasket() {
+        this.miniBasketOpen.click();
     }
 }

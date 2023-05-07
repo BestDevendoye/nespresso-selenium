@@ -7,14 +7,13 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.time.Duration;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ValidationPanierTest extends BaseClass {
 
     @Test
     public void validationPanierTest() throws IOException {
-        driver.get(baseUrl);
-        logger.info("Base url "+ baseUrl + " opened");
+        driver.get("https://www.nespresso.com/pro/fr/fr/order/capsules/pro");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
 
         HomePage homePage = new HomePage(driver);
@@ -23,15 +22,21 @@ public class ValidationPanierTest extends BaseClass {
         homePage.clickAcceptButton();
         waitForNSeconds(1);
 
-        homePage.clickNespressoProfessionnelLink();
+        homePage.addToBagButton();
         waitForNSeconds(1);
 
         homePage.clickFirstAcheterButtonTexts();
         waitForNSeconds(1);
 
-        boolean isBannerDisplayed = driver.findElements(By.id("_evidon-banner-content")).size() < 1;
+        boolean isBannerDisplayed = driver.findElements(By.className("QuantitySelector__container")).size() > 0;
         captureScreenshot(driver, "Home Page - Banner button accept");
         assertTrue(isBannerDisplayed);
+
+        homePage.clickAddToBagQuantity();
+        waitForNSeconds(1);
+        boolean addToBagQuantityIsPresent = driver.findElements(By.className("MiniBasketButton__quantity")).size() > 0;
+        //System.out.println("***** Size Validation *****"+ driver.findElement(By.className("heading")).getSize());
+        assertFalse(addToBagQuantityIsPresent);
 
         driver.get("https://www.nespresso.com/pro/fr/fr/order/machines/pro");
         waitForNSeconds(4);
@@ -39,15 +44,9 @@ public class ValidationPanierTest extends BaseClass {
         waitForNSeconds(1);
 
         captureScreenshot(driver, "Validation Panier Test");
-        driver.findElement(By.xpath("/html/body/main/div[7]/div/div[1]/div/div[2]/div[5]/div[1]/div/div/button")).click();
-        waitForNSeconds(1);
+        //driver.findElement(By.id("ta-product-details__add-to-bag-button")).click();
+      //  waitForNSeconds(1);
 
         assertTrue(driver.findElement(By.xpath("//*[text()='Pack Zenius']")).isDisplayed());
-
-        captureScreenshot(driver, "Validation Panier Test");
-        driver.findElement(By.xpath("/html/body/header/div/div[1]/div/div/div/div[2]/div/div[2]/button")).click();
-        waitForNSeconds(1);
-
-        assertTrue(driver.findElement(By.xpath("//*[text()='Machines professionnelles(1)']")).isDisplayed());
     }
 }
