@@ -21,7 +21,7 @@ public class NosCafesTest extends BaseClass {
         homePage.clickAcceptButton();
         waitForNSeconds(1);
 
-        homePage.clickNespressoProfessionnelLink();
+        //homePage.clickNespressoProfessionnelLink();
         waitForNSeconds(1);
 
         homePage.clickFirstAcheterButtonTexts();
