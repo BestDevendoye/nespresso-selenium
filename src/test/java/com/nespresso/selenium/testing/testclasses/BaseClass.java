@@ -39,13 +39,12 @@ public class BaseClass {
     public void setup(String browser) {
 
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-        ChromeOptions options = getChromeOptions();
-        options.setBinary(CHROME_DRIVER_PATH);
-        options.addArguments("--headless");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*","ignore-certificate-errors");
 
         // WebDriverManager.chromedriver().setup();
         if (browser.equals(Browser.CHROME.getLabel())) {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         } else if (browser.equals(Browser.FIREFOX.getLabel())) {
             driver = new FirefoxDriver();
         } else if (browser.equals(Browser.SAFARI.getLabel())) {
