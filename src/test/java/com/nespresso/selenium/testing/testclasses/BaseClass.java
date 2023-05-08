@@ -38,7 +38,7 @@ public class BaseClass {
     public void setup(String browser) {
 
        // System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-        System.setProperty("webdriver.chrome.driver", "/tmp/chromeDriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/tmp/chromeDriver/chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
