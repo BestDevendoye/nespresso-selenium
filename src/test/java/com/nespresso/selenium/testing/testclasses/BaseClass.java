@@ -37,7 +37,9 @@ public class BaseClass {
     @Parameters(value = "browser")
     public void setup(String browser) {
 
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+       // System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+        System.setProperty("webdriver.chrome.driver", "/tmp/chromeDriver/chromedriver.exe");
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--headless"); //!!!should be enabled for Jenkins
