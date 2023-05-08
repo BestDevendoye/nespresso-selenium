@@ -2,7 +2,6 @@ package com.nespresso.selenium.testing.testclasses;
 
 import com.nespresso.selenium.testing.enums.Browser;
 import com.nespresso.selenium.testing.utilities.PropertyConfiguration;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -40,6 +39,10 @@ public class BaseClass {
 
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless"); //!!!should be enabled for Jenkins
+        options.addArguments("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
+        options.addArguments("--window-size=1920x1080"); //!!!should be enabled for Jenkins
         options.addArguments("--remote-allow-origins=*","ignore-certificate-errors");
 
         // WebDriverManager.chromedriver().setup();
